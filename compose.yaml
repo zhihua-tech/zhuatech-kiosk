@@ -1,0 +1,11 @@
+services:
+  kiosk:
+    build: .
+    ports: ["18085:18085"]
+    environment:
+      PORT: 18085
+      KIOSK_API_KEY: ${KIOSK_API_KEY:-zhuatech-demo-key}
+      KIOSK_DATA_FILE: /app/data/kiosk.json
+    volumes: ["kiosk-data:/app/data"]
+volumes:
+  kiosk-data:

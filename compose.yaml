@@ -7,5 +7,11 @@ services:
       KIOSK_API_KEY: ${KIOSK_API_KEY:-zhuatech-demo-key}
       KIOSK_DATA_FILE: /app/data/kiosk.json
     volumes: ["kiosk-data:/app/data"]
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:18085/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
 volumes:
   kiosk-data:
